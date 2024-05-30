@@ -6,6 +6,7 @@
     <title>Creators Hub | Panel Empresas</title>
     <link rel="stylesheet" href="back-creators-hub.css">
     <link rel="stylesheet" href="listados.css">
+    <link rel="stylesheet" href="chat.css">
 
     <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +16,8 @@
     <!-- Biblioteca Font Awesome (iconos) -->
     <script src="https://kit.fontawesome.com/cf5c140da9.js" crossorigin="anonymous"></script>
     
-    <script src="back-admin.js"></script>
-    <script src="gestionProyectos.js"></script>
+    <script src="JS/back-empresas.js"></script>
+    <script src="JS/gestionProyectos-empresa.js"></script>
 
 </head>
 
@@ -36,11 +37,9 @@
             <div>
 
                 <ul class="menu-vertical" id="pestanias">
-                     <li class= "tabs active-tab" id="home"><i class="fa-solid fa-house"></i>Inicio</li>
-                     <li class= "tabs" id="mis-proyectos"><i class="fa-solid fa-briefcase"></i>Mis Proyectos</li>
+                     <li class= "tabs active-tab-empresa" id="mis-proyectos"><i class="fa-solid fa-briefcase"></i>Mis Proyectos</li>
                      <li class= "tabs" id="nuevo-proyecto"><i class="fa-solid fa-bullhorn"></i>Publicar Nuevo Proyecto</li>
                      <li class= "tabs" id="portfolios"><i class="fa-solid fa-address-book"></i>Portfolio de Creators</li>
-                     <li class= "tabs" id="chats"><i class="fa-solid fa-comments"></i>Chats</li>
                      <li class= "tabs" id="settings"><i class="fa-solid fa-gear"></i>Preferencias</li>
                      <li class= "tabs" id="help"><i class="fa-solid fa-circle-question"></i>Centro de Ayuda</li>
                      <li class= "tabs" id="salir"><i class="fa-solid fa-right-from-bracket"></i>Salir</li>
@@ -51,15 +50,9 @@
 
         </section>
 
-        <section class="panel-pantalla">
+        <section class="panel-pantalla-empresa">
 
             <div class="panel active-panel">
-                <h2>INICIO</h2>
-                <div></div>
-                <div></div>
-            </div>
-
-            <div class="panel">
                 <h2>MIS PROYECTOS</h2>
                 <p>Aquí podrás consultar tus proyectos activos y cerrados, modificar su estado, revisa las candidaturas y mucho más.</p>
                 <div id="listado"></div>
@@ -75,7 +68,7 @@
 				        <label for="titulo_proyecto">Título del proyecto:</label>
 				        <input type="text" id="titulo_proyecto" name="titulo_proyecto" required>
 				    
-				        <label for="categoria">¿Qué tipo de servicios necesitas?</label>
+				        <label for="categoria">Categoría de servicios:</label>
 				        <select id="categoria" name="categoria" required>
 				            <option value="" disabled selected>Selecciona una categoría</option>
 				            <option value="contenido_UGC">Contenido UGC</option>
@@ -87,13 +80,13 @@
 				            <option value="artes_plasticas">Artes Plásticas</option>
 				        </select>
 				    
-				        <label for="descripcion">Por favor, describe brevemente en qué consiste el proyecto a continuación:</label>
+				        <label for="descripcion">Descripción del proyecto:</label>
 				        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
 				    
-				        <label for="fecha_entrega">Fecha límite de entrega:</label>
+				        <label for="fecha_entrega">Fecha máxima de finalización:</label>
 				        <input type="date" id="fecha_entrega" name="fecha_entrega" required>
 				    
-				        <label for="archivo_adjunto">Por favor, adjunta el briefing detallado del proyecto:</label>
+				        <label for="archivo_adjunto">¿Necesitas adjuntar un nuevo briefing?</label>
 				        <input type="file" id="archivo_adjunto" name="archivo_adjunto" accept=".doc,.docx,.pdf" required>
 				        <br>
 				        
@@ -104,11 +97,23 @@
 			
 				</div>
 				
+				<!-- Contenedor para el popup de ver Proyectos -->
 				<div id="popVerProyecto" class="popup">
-					    <div class="popup-contenido" id="verProyecto">
-					        <!-- Aquí se muestran los detalles del proyecto -->
-					    </div>
+					    <div class="popup-contenido" id="verProyecto"></div>
 				</div>
+				
+				<!-- Contenedor para el popup de candidatos -->
+				<div id="popupCandidatos" class="popup">
+				    <div class="contenidoCandidatos" id="listaCandidatos"></div>
+				</div>
+				
+				
+				 <div id="nombreUsuario" data-nombre="<%= session.getAttribute("nombre") %>"></div>
+				<!-- Contenedor para el popup de chats -->
+				<div id="popupChats" class="popup">
+				    <div class="contenidoChat" id="chatProyecto"></div>
+				</div>
+								
 				
 				
             </div>
@@ -142,7 +147,7 @@
                         <label for="descripcion">Por favor, describe brevemente en qué consiste el proyecto a continuación:</label>
                         <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
                     
-                        <label for="fecha_entrega">Fecha límite de entrega:</label>
+                        <label for="fecha_entrega">¿Cuál es la fecha máxima para desarrollar del proyecto?</label>
                         <input type="date" id="fecha_entrega" name="fecha_entrega" required>
                     
                         <label for="archivo_adjunto">Por favor, adjunta el briefing detallado del proyecto:</label>
@@ -159,12 +164,26 @@
             
             <div class="panel">
                 <h2>LISTADO DE CREADORES</h2>
-                <div id="listado-creadores"></div>
-            </div>
+                <div class="buscador-categorias">
+                
+                    <form id="buscador-categorias" action="SV_Buscador" method="GET">
+				        <label for="categoria">Encuentra un <strong>CreArtor</strong> según su categoría:</label>
+				        <select id="categoria-form" name="categoria">
+				            <option value="" disabled selected>Selecciona una disciplina</option>
+				            <option value="contenido_UGC">Contenido UGC</option>
+				            <option value="video">Vídeo</option>
+				            <option value="fotografia">Fotografía</option>
+				            <option value="ilustracion">Ilustración</option>
+				            <option value="diseno_grafico">Diseño Gráfico</option>
+				            <option value="motions_graphics">Motions Graphics</option>
+				            <option value="artes_plasticas">Artes Plásticas</option>
+				        </select>
+				        <input type="button" id="buscar-button" value="Buscar">
 
-            <div class="panel">
-                <h2>CHATS</h2>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat, eros sit amet ultrices malesuada, arcu magna dictum mi, vitae ultricies ligula risus sit amet leo. Integer condimentum lobortis libero, quis posuere nulla pellentesque nec. Nullam fringilla, velit id consequat pretium, dolor eros fringilla eros, ac molestie eros justo id libero. Quisque sit amet ante sed leo varius fermentum. Nullam id nisi nec sem cursus fermentum. Duis auctor ligula a nisi congue faucibus. Cras fringilla, leo in sodales finibus, ligula arcu aliquet odio, a ullamcorper ligula lectus vel neque. Fusce vitae eros a libero lacinia vestibulum. Maecenas convallis, lectus at tristique fringilla, dui nulla eleifend dui, eget commodo nisi eros et velit. Ut auctor turpis vel justo tincidunt, eget malesuada nisl eleifend. Sed ullamcorper odio nec dolor eleifend, eget posuere lectus scelerisque. Nullam auctor elit eu lacus mattis, in tincidunt risus pulvinar. Donec non tortor vitae metus eleifend pharetra. Phasellus ut nisi sed leo congue consequat sed eget nisl."</p>
+				    </form>
+    
+                </div>
+                <div id="listado-creadores"></div>
             </div>
             
             <div class="panel">

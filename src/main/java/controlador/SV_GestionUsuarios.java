@@ -53,6 +53,7 @@ public class SV_GestionUsuarios extends HttpServlet {
 
 		HttpSession sesion = request.getSession();
 		
+		
 	//	if(sesion.getAttribute("rol").equals("Admin")) { <- PARA ADMINISTRADORES
 		
 		
@@ -71,9 +72,9 @@ public class SV_GestionUsuarios extends HttpServlet {
 			Usuario u = new Usuario();
 			
 			try {
-				u.obtenerPorDnicif(dnicif);
-				out.print(u.dameJson());
-				System.out.println(u.dameJson());
+				u.obtenerUsuario(dnicif);
+				out.print(u.listarUsuarios());
+				System.out.println(u.listarUsuarios());
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -86,9 +87,7 @@ public class SV_GestionUsuarios extends HttpServlet {
 			
 			try {
 				usuarios = new DaoUsuarios();
-				// ORIGINAL out.print(proyectos.listarJSON());
-				String dnicif = (String) sesion.getAttribute("dnicif");
-				out.print(usuarios.listarJSON(dnicif));
+				out.print(usuarios.listarJSONCreadores());
 				
 
 			} catch (SQLException e) {
@@ -114,9 +113,25 @@ public class SV_GestionUsuarios extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		// OP. LISTAR POR CATEGORIAS	
+		}else if(opcion == 4) {
+			DaoUsuarios usuarios;
+			
+			try {
+				usuarios = new DaoUsuarios();
+				out.print(usuarios.listarJSONCategorias("categoria"));
+				
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 
 			
 		}
+		
+
 		
 		}				
 		
@@ -178,7 +193,7 @@ public class SV_GestionUsuarios extends HttpServlet {
 				System.out.println("-- EL USER NO EXISTE");
 				
 				DaoUsuarios dao = new DaoUsuarios();
-				u.insertar();
+				u.registrarseEmpresa();
 				
 				
 			}else {
@@ -186,7 +201,7 @@ public class SV_GestionUsuarios extends HttpServlet {
 				System.out.println("-- EL USER EXISTE");
 				
 				u.setDnicif(dnicif);		
-				u.actualizar();
+				u.modificarDatos();
 				
 
 			}

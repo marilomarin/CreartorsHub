@@ -35,13 +35,13 @@
                 </a>
             </div>
 
-            <div id="toggle-menu" class="toggle-menu">
+            <div id="toggle-icon">
                 <img src="/img/icon-toggle.png">
             </div>
 
             <ul>
                 <li class="dropdown-menu">
-                    <a href="#">Servicios <i class="fa-regular fa-chevron-down"></i></a>
+                    <a href="#">Servicios <i class="fa-solid fa-caret-down" style="margin-right: 5px;"></i></a>
                     <div class="dropdown-menu-servicios">
                         <div class="sub-dropdown">
                             <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por categoría :</div>
@@ -106,7 +106,7 @@
             <h2>Crea tu perfil de creador/artista</h2>
         </div>
 
-    <form name="formulario-alta" action="SV_AltasUsuarios" method="post">
+    <form name="formulario-alta" action="SV_AltasUsuarios" method="post" enctype="multipart/form-data">
 
         <div class="columna">
             <label for="email" id="label-form">Email*:</label><br>
@@ -164,6 +164,10 @@
             
             <label for="portfolio" id="label-form">Por favor, introduce  la url de tu portfolio digital o web*:</label><br>
             <input type="text" id="campo-form" name="portfolio" required><br><br>  
+            
+            <label for="foto_perfil">¡Sube tu foto de perfil!</label>
+	        <input type="file" id="campo-form" name="foto_perfil" accept=".jpg,.png" required><br><br> 
+	       
             
             <label for="bio" id="label-form">Cuéntanos más sobre ti :)*:</label><br>
             <textarea id="campo-form-textarea" name="bio" required></textarea><br><br>   

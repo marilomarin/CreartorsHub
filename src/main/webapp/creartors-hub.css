@@ -21,11 +21,7 @@
     5.1 Header
     5.2 Secciones centrales
     5.3 Footer
-
-    
-6.0 Formularios
-    
-    6.2 Nuevos proyectos
+    5.4 Ocultos PC
 
 --------------------------------------------------------------*/
 
@@ -107,11 +103,11 @@ body {
 }
 
 .menu a { 
-    color: #000000; /* Color fijo de los enlaces del menú */
-    text-decoration: none; /* Quitar subrayado de todos los enlaces */
+    color: #000000; 
+    text-decoration: none; 
 }
 
-.menu a:hover { /* Color de los enlaces hover */
+.menu a:hover { 
     color: #b0a332;
 }
 
@@ -123,7 +119,7 @@ ul {
 }
 
 ul li {
-    display: inline-block; /* Mostrar elementos de lista en línea */
+    display: inline-block; 
     margin-right: 40px;
 }
 
@@ -148,19 +144,11 @@ ul li {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    z-index: 1;
-}
-
-.dropdown-menu:hover .dropdown-menu-servicios {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Divide en tres columnas de igual tamaño */
-    gap: 30px; /* Espacio entre columnas */
-    padding: 20px; 
 }
 
 .dropdown-content {
     display: flex;
-    flex-direction: column; /* Alinear elementos en columna */
+    flex-direction: column; 
     padding: 20px;
     justify-content: left;
     gap: 10px; /* Espacio entre elementos */
@@ -168,7 +156,7 @@ ul li {
 
 .dropdown-content a {
     display: block; /* Hacer que los enlaces ocupen todo el ancho */
-    text-align: left; /* Centrar el texto */
+    text-align: left; 
     padding-left: 5px;
     font-size:small;
 }
@@ -476,17 +464,19 @@ footer{
   }
 
 .lista-footer a { 
-    color: #000000; /* Color fijo de los enlaces del menú */
-    text-decoration: none; /* Quitar subrayado de todos los enlaces */
+    color: #000000; 
+    text-decoration: none; 
 }
 
-.lista-footer a:hover { /* Color de los enlaces hover */
+.lista-footer a:hover { 
     color: #b0a332;
 }
 
-#titulo-footer{
-    grid-column: 1 / span 5; /* Hacer que el título ocupe todas las columnas */
+.titulo-footer {
+    margin-bottom: 10px;
+    cursor: pointer;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .logo-footer img{
@@ -543,7 +533,8 @@ footer{
 @media screen and (max-width: 768px){ /* Versión móvil */
 
     .logo{
-        display: none;
+		width: 300px;
+		margin-left: -40px;
     }
 
     .header-login{
@@ -554,118 +545,270 @@ footer{
         display: none;
     }
 
-    .toggle-menu{
-        width: 40px;
+    #toggle-icon{
+        width: 60px;
         position: absolute;
+        right: 30px;
         cursor: pointer;
-        top: 40pxm;
-        right: 50px;
     }
 
-    .menu{
-        position: absolute;
-        top: 40pxm;
-        right: 50px;
-
+	.menu-items{
+		display: none;
+	}
+    
+    .menu-items.active{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: absolute;
+		background-color:#b0a332 ;
+		top:0;
+		right: 0;
+		bottom: 0;
+		padding: 20%;
+		z-index: 9999;
+		margin-top: -15px;
+    }
+    
+     .menu-items a {
+        color: white;
+        text-decoration: none; 
+        display: block; 
+        padding-bottom: 10px;
+        font-size: 25px;
+    }
+    
+     .menu-items a:hover,
+     .titulo-submenu:hover {
+        color: #b0dae0;
+        cursor: pointer;
+    }
+	
+	.dropdown-menu {
+        display: block;
+        flex-direction: column;
+        position: relative;
+        z-index: 0;
+        font-size: small;
+		color: white;
+    }
+    
+    .dropdown-menu-servicios {
+        display: none; 
+        background-color: transparent;
+        box-shadow: none;
+        margin: -15px;
     }
 
-}
-
-@media screen and (min-width: 768px){ /* Versión PC */
-
-    .toggle-menu{
-        display: none;
+    .dropdown-menu-servicios.active {
+        display: flex;
+        flex-direction: column;
+        font-weight: 400;
+        width: 200px;
+        justify-content: center;
+        align-content: center;
+        z-index: 10;
+    }
+    
+    .titulo-submenu{
+		color: white;
+		margin-left: 10px;
+	}
+    
+    .dropdown-content{
+		display: none;
     }
 
+    .dropdown-content.active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .dropdown-content a {
+        display: block; 
+        text-align: center; 
+        font-size: small;
+        color: black;
+    }
+    
+    #boton-cerrar-menu {
+        margin-left: -30px;
+        margin-bottom: 15px;
+    }
 }
 
 /* >> 5.2 Secciones centrales */
 
 @media screen and (max-width: 768px){ /* Versión móvil */
-    
-    .columna-servicios {
-        border-right: none;
-        padding: 20px 30px;
-    }
 
-    .banner{
-        margin-top: 100px;
-        grid-area: banner;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction:row; /* Organiza los elementos horizontalmente */
-        margin-bottom: 50px;
-        justify-content: center;
-    }
-    
-    .banner-derecha{
-        background-color: #b0dae0;
-        padding: 70px;
-        margin: 20px;
-        border-radius: 20px;
+	.contenedor{
+		left: 0;
+	}
+
+
+    .texto-banner{
+		width: 90%;
+	}
+	
+    .texto-titulo{
+		font-size:35px;
+        margin-top: 15px;
         text-align: center;
+	}
+	
+     .video-banner{
+		display: none;
+	}
+	
+	.categorias-banner{
+		margin-right: -25px;
+		margin-bottom: -20px;
+	}
+
+
+    .categorias-banner span{
+        font-size: 14px; 
+        margin: 7px; 
     }
 
-    #titulo-banner{
-        font-size: 30px;
+    .content-servicios{
+        display: block;
+        margin-left: 20px;
     }
 
-    .boton-demo{
-        margin-top: 30px;
+    .columna-servicios{
+        margin-bottom: -50px;
+        border-right: 0px;
+    }
+    
+   	.columna-servicios:last-child{
+        margin-bottom: 15px;
+    }
+    
+     .logos-marcas {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: center; 
+    }
+
+    .marcas {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        justify-items: center; 
+    }
+
+ 	.marcas img {
+        width: 150px; 
+        padding-right: 0; /* Elimina el padding derecho en la versión móvil */
+    }
+
+    .video-responsive{
+        width: 100%;
+        display: none;
     }
 
     .video-banner-2{
-        width: 100%;
+        display: none;
     }
 
+    .banner-derecha{
+        margin-top: -0px;
+        margin-left: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    #titulo-banner{
+        font-size: 35px;
+    }
+ 
+  
+}
+
+/* >> 5.3 Footer */
+
+@media screen and (max-width: 768px) {
+
+    .divisor-horizontal{
+        margin-left: 25px;
+    }
+
+    .titulo-footer:hover {
+        cursor: pointer;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .footer-columnas {
+        display: block;
+        text-align: center;
+    }
+    
+    .columna-f1,
+    .columna-f2,
+    .columna-f3,
+    .columna-f4,
+    .columna-f5 {
+       margin: 10px 0;
+    }
+    
+    .titulo-footer {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .lista-footer {
+        display: none; /* Ocultar las listas inicialmente */
+    }
+
+    .lista-footer.active { /* Desplegar al activarse */
+        display: block;
+        margin-left: 40px;
+    }
+
+    .columna-f5 .lista-footer {
+        display: block; /* Mantener visible "Contacta con nosotros" */
+        margin-left: 40px;
+        margin-bottom: -40px;
+    }
+    
+    #icono-mas{
+		margin-left: 6px;
+	}
+	
 }
 
 
 
-/* >> 6.2 Nuevos proyectos */
+/* >> 5.4 Ocultos PC */
 
-.contenedorProyectos {
-    width: 50%;
-    background-color: #b0a332;
-    border-radius: 20px;
-    padding: 40px;
-    margin: 50px auto;
-}
+@media screen and (min-width: 768px){ /* Versión PC */
 
-.contenedorProyectos label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 3px;
-}
+    #toggle-icon{
+        display: none;
+    }
 
-.contenedorProyectos input[type="text"],
-.contenedorProyectos input[type="date"],
-.contenedorProyectos select,
-.contenedorProyectos textarea {
-    width: 100%;
-    padding: 8px;
-    font-size: 12px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    resize: vertical;
-}
+    .video-responsive{
+        display: none;
+    }
+    
+  	#icono-mas{
+		display: none;
+	}
+	
+	#boton-cerrar-menu{
+		display: none;
+	}
+	
+	.dropdown-menu:hover .dropdown-menu-servicios {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        padding: 20px;
+    }
 
-.contenedorProyectos input[type="submit"] {
-    background-color: #ffffff;
-    color: black;
-    padding: 10px 20px;
-    font-size: 12px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 30px;
-}
-
-.contenedorProyectos input[type="submit"]:hover {
-    transform: translateY(-5px); /* Hacer efecto bounce */
-    transition: transform 0.5s; /* Hacero suave */
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
 }

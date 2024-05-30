@@ -24,7 +24,6 @@ import java.sql.SQLException;
  */
 
 
-// Si funciona bien, borrar esto 
 @WebServlet("/SV_PublicarProyecto")
 
 @MultipartConfig

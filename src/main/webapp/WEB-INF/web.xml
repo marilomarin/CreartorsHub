@@ -69,4 +69,34 @@
     <servlet-name>SV_ModificarProyectos</servlet-name>
     <url-pattern>/SV_ModificarProyectos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SV_Buscador</display-name>
+    <servlet-name>SV_Buscador</servlet-name>
+    <servlet-class>controlador.SV_Buscador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SV_Buscador</servlet-name>
+    <url-pattern>/SV_Buscador</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SV_Chats</display-name>
+    <servlet-name>SV_Chats</servlet-name>
+    <servlet-class>controlador.SV_Chats</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SV_Chats</servlet-name>
+    <url-pattern>/SV_Chats</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SV_GestionCandidaturas</display-name>
+    <servlet-name>SV_GestionCandidaturas</servlet-name>
+    <servlet-class>controlador.SV_GestionCandidaturas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SV_GestionCandidaturas</servlet-name>
+    <url-pattern>/SV_GestionCandidaturas</url-pattern>
+  </servlet-mapping>
 </web-app>

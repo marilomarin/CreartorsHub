@@ -13,8 +13,8 @@
 
     <!-- Biblioteca Font Awesome (iconos) -->
     <script src="https://kit.fontawesome.com/cf5c140da9.js" crossorigin="anonymous"></script>
-    
-    <script src="login.js"></script>
+
+	<script src="JS/index-responsive.js"></script>
 
 </head>
 
@@ -37,16 +37,19 @@
                 
             </div>
 
-            <div id="toggle-menu" class="toggle-menu">
+            <div id="toggle-icon">
                 <img src="img/icon-toggle.png">
             </div>
 
-            <ul>
+            <ul class="menu-items">
+				
+				<a id="boton-cerrar-menu" href="#"><i class="fa-solid fa-xmark"></i></a>
+				
                 <li class="dropdown-menu">
                     <a href="#">Servicios <i class="fa-solid fa-caret-down" style="margin-right: 5px;"></i></a>
                     <div class="dropdown-menu-servicios">
                         <div class="sub-dropdown">
-                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por categoría :</div>
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por categoría </div>
                             <div class="dropdown-content">
                                 <a href="#">Contenido UGC</a>
                                 <a href="#">Vídeo</a>
@@ -58,7 +61,7 @@
                             </div>
                         </div>
                         <div class="sub-dropdown">
-                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por plataforma :</div>
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por plataforma </div>
                             <div class="dropdown-content">
                                 <a href="#">Instagram Reels</a>
                                 <a href="#">TikTok</a>
@@ -70,7 +73,7 @@
                             </div>
                         </div>
                         <div class="sub-dropdown">
-                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por industria :</div>
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por industria </div>
                             <div class="dropdown-content">
                                 <a href="#">Moda</a>
                                 <a href="#">Cosmética</a>
@@ -83,9 +86,9 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="#">Cómo funciona</a></li>
-                <li><a href="#">Conviértete en un CreArtor</a></li>
-                <li><a href="#">Tarifas</a></li>
+                <li class="dropdown-menu" id="opc2"><a href="#">Cómo funciona</a></li>
+                <li class="dropdown-menu" id="opc3"><a href="#">Conviértete en un CreArtor</a></li>
+                <li class="dropdown-menu" id="opc4"><a href="#">Tarifas</a></li>
             </ul>
 
         </nav>
@@ -164,6 +167,8 @@
 
     </div>  
 
+    <video class="video-responsive" src="img/video-banner-2.mp4" type="video/mp4" autoplay muted loop></video>
+
     <div class="banner">
 
         <video class="video-banner-2" src="img/video-banner-2.mp4" type="video/mp4" autoplay muted loop>
@@ -194,7 +199,7 @@
     <div class="footer-columnas">
 
         <div class="columna-f1">
-            <div id="titulo-footer"><strong>Por categoría</strong></div>
+			 <div class="titulo-footer"><strong>Por categoría</strong><i class="fa-solid fa-plus" id="icono-mas"></i></div>
                 <ul class="lista-footer">
                     <li><a href="#">Contenido UGC</a></li>
                     <li><a href="#">Vídeo</a></li>
@@ -207,7 +212,7 @@
         </div>  
             
         <div class="columna-f2">
-            <div id="titulo-footer"><strong>Por plataforma</strong></div>
+			<div class="titulo-footer"><strong>Por plataforma</strong><i class="fa-solid fa-plus" id="icono-mas"></i></div>
                 <ul class="lista-footer">
                     <li><a href="#">Instagram Reels</a></li>
                     <li><a href="#">TikTok</a></li>
@@ -220,7 +225,7 @@
         </div> 
 
         <div class="columna-f3">
-            <div id="titulo-footer"><strong>Por industria</strong></div>
+			 <div class="titulo-footer"><strong>Por industria</strong><i class="fa-solid fa-plus" id="icono-mas"></i></div>
                 <ul class="lista-footer">
                     <li><a href="#">Moda</a></li>
                     <li><a href="#">Cosmética</a></li>
@@ -233,7 +238,7 @@
         </div> 
 
         <div class="columna-f4">
-            <div id="titulo-footer"><strong>Más información</strong></div>
+            <div class="titulo-footer"><strong>Más información</strong><i class="fa-solid fa-plus" id="icono-mas"></i></div>
                 <ul class="lista-footer">
                     <li><a href="#">Aviso Legal</a></li>
                     <li><a href="#">Política de Privacidad</a></li>
@@ -244,7 +249,7 @@
         </div> 
 
         <div class="columna-f5">
-            <div id="titulo-footer"><strong>Contacta con nosotros</strong></div>
+            <div class="titulo-footer"><strong>Contacta con nosotros</strong></div>
                 <ul class="lista-footer">
                     <li>Av. de las Ciencias, 38</li>
                     <li>11385 Madrid</li>

@@ -1,10 +1,26 @@
 
+/*--------------------------------------------------------------
+>>> TABLA DE CONTENIDOS:
+----------------------------------------------------------------
+0.0 General
+1.0 Estados 
+2.0 Categorías
+	2.1 Fotos creadores
+3.0 Candidaturas
+
+--------------------------------------------------------------*/
+
+/* >> 0. General */
+
 *{
     padding: 0;
     margin: 0;
 }
 
-#listado{
+#listado,
+#listado-creadores,
+#listado-proyectos-disponibles,
+#listaCandidatos{
 	display: flex;
     flex-direction: column; /* Alinea los elementos en una columna */
     align-items: center;
@@ -17,28 +33,46 @@
 .tablaListado{
 	text-align: left;
 	background-color: white;
-	padding: 20px 20px;
+	padding: 10px 20px;
 	border: 1px solid #b0a332;
 	border-radius: 20px;
+	min-width: 950px;
 }
 
 td{
-	padding-bottom: 40px;
-	padding-top: 40px;
+	padding-bottom: 35px;
+	padding-top: 35px;
+	padding-right: 20px;
+}
+
+
+
+.acciones a {
+    margin-right: 5px; /* Ajusta el valor según necesites */
+}
+
+.acciones a:last-child {
+    margin-right: 0; /* Elimina el margen del último icono */
+}
+
+th{
+	padding-right: 20px;
 	
 }
+
 
 tr:not(:last-child) td { /* Para no aplicar la línea en la última fila */
     border-bottom: 1px solid #b0a332;
 }
 
-#bloque{
-	padding-right: 40px;
-}
+
 
 #icono{
 	padding-right: 15px;
+  	text-align: center; 
+  	line-height: inherit; 
 }
+
 
 a{
 	color: black;
@@ -47,6 +81,8 @@ a{
 a:hover{
 	color: #b0a332;
 }
+
+/* >> 1.0 Estados */
 
 #open {
     background-color: #f9b2c4;
@@ -74,4 +110,98 @@ a:hover{
     border-radius: 20px;
     font-size:xx-small;
     padding: 5px 15px;
+}
+
+/* >> 2.0 Categorías */
+
+#diseno, #fotografia, #ilustracion,
+#video, #artes, #motion, #ugc{
+	border: none; 
+	font-size: smaller;
+    padding: 5px 15px; 
+    text-align: center; 
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+#diseno{
+	background-color: #f9b2c4;
+}
+
+#fotografia{
+	background-color: #b0dae0;
+}
+
+#ilustracion{
+	background-color: #f1b945;
+}
+
+#video{
+	background-color: #b0a332;
+}
+
+#artes{
+	background-color: #8eb478;
+}
+
+#motion{
+	background-color: azure;
+}
+
+
+#ugc{
+	background-color:antiquewhite;
+}
+
+.boton-acc,
+.enviar-candidaturas {
+	border: none; 
+	background-color: white;
+	font-size: smaller;
+    padding: 5px 15px; 
+    text-align: center; 
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-right: 10px; 
+    cursor: pointer;
+}
+
+.boton-acc:hover,
+.enviar-candidaturas:hover {
+	background-color: #b0a332;
+	color: white;
+	transform: translateY(-5px); 
+    transition: transform 0.5s; 
+    cursor: pointer;
+}
+
+.boton-acc:last-child {
+    margin-right: 0; 
+}
+
+/* >> 2.1 Fotos creadores */
+
+.foto-perfil{
+	border-radius: 50px;
+	max-width: 70px;
+}
+
+/* >> 3.0 Candidaturas */
+
+.estado-select{
+	margin-left: 15px;
+	margin-right: 15px;
+	font-family: "Poppins";
+	font-size: smaller;
+    padding: 5px 15px; 
+    text-align: center; 
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.enviar-candidaturas {
+	font-family: "Poppins";
 }

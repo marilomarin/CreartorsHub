@@ -43,7 +43,7 @@ public class SV_GestionProyectos extends HttpServlet {
 	//Esta es la ruta local para probar ahora
 	
 	private File uploads = new File(pathFiles);
-	//Cuando esté montado en el servidor, le pongo la ruta (/archivos), por ejemplo
+	//Cuando esté montado en el servidor, le pongo la ruta que corresponda
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -58,13 +58,8 @@ public class SV_GestionProyectos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		//Tengo que activar aquí también la sesión ¿?
-		//sesion = request.getSession();
 
 		HttpSession sesion = request.getSession();
-		
-		if(sesion.getAttribute("rol").equals("Empresa")) {
 		
 		
 		PrintWriter out = response.getWriter();
@@ -72,8 +67,45 @@ public class SV_GestionProyectos extends HttpServlet {
 		int opcion = Integer.parseInt(request.getParameter("op"));
 		
 		
-		// OP. MODIFICAR
-		if(opcion == 2) {
+		// OP. LISTAR TODOS LOS PROYECTOS ASOCIADOS AL USUARIO
+		if(opcion == 1) {
+			
+			if(sesion.getAttribute("rol").equals("Empresa")) {
+			
+			DaoProyectos proyectos;
+			
+			try {
+				proyectos = new DaoProyectos();
+				
+				
+				String dnicif = (String) sesion.getAttribute("dnicif");
+				out.print(proyectos.listarJSONProyectosXUsuario(dnicif));
+				
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			}else if (sesion.getAttribute("rol").equals("Creador")) {
+				
+				DaoProyectos proyectos;
+				
+				try {
+					proyectos = new DaoProyectos();
+					
+					
+					String dnicif = (String) sesion.getAttribute("dnicif");
+					out.print(proyectos.listarJSONProyectosXUsuarioCreador(dnicif));
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		// OP. LISTAR Y MODIFICAR LOS DATOS DEL PROYECTO	
+		}else if(opcion == 2) {
 
 			int idProyecto = Integer.parseInt(request.getParameter("idProyecto"));
 			
@@ -83,32 +115,16 @@ public class SV_GestionProyectos extends HttpServlet {
 			
 			try {
 				p.obtenerPorId(idProyecto);
-				out.print(p.dameJson());
-				System.out.println(p.dameJson());
+				out.print(p.listarProyectos());
+				System.out.println(p.listarProyectos());
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 			
-		// OP. LISTAR	
-		}else if(opcion == 1) {
-			DaoProyectos proyectos;
-			
-			try {
-				proyectos = new DaoProyectos();
-				// ORIGINAL out.print(proyectos.listarJSON());
-				String dnicif = (String) sesion.getAttribute("dnicif");
-				out.print(proyectos.listarJSON(dnicif));
-				
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 		// OP. BORRAR
-		}else if(opcion==3){
+		}else if(opcion == 3){
 			
 			try {
 				int idProyecto = Integer.parseInt(request.getParameter("idProyecto"));
@@ -119,19 +135,32 @@ public class SV_GestionProyectos extends HttpServlet {
 				System.out.println("Se ha borrado el ID: " + idProyecto);
 				
 				String dnicif = (String) sesion.getAttribute("dnicif");
-				out.print(proyectos.listarJSON(dnicif));
+				out.print(proyectos.listarJSONProyectosXUsuario(dnicif));
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
+		// OP. LISTAR PROYECTOS PENDIENTE DE ASIGNAR CREADOR
+		}else if(opcion == 4) {
+			
+			DaoProyectos proyectos;
+			
+			try {
+				proyectos = new DaoProyectos();
+				
+				out.print(proyectos.listarJSONProyectosXEstado());
+				
 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		
-		}				
-		
+	
 	}
 
 	/**
@@ -142,7 +171,7 @@ public class SV_GestionProyectos extends HttpServlet {
 		
 		HttpSession sesion = request.getSession();
 		
-		if(sesion.getAttribute("rol").equals("Empresa")) {
+		//if(sesion.getAttribute("rol").equals("Empresa")) {
 		
 		// Método para LISTAR, enviando una respuesta JSON al cliente desde el servidor
 		
@@ -150,7 +179,7 @@ public class SV_GestionProyectos extends HttpServlet {
 				
 				try {
 					String dnicif = (String) sesion.getAttribute("dnicif");
-					respuestaJSON = DaoProyectos.getInstance().listarJSON(dnicif);
+					respuestaJSON = DaoProyectos.getInstance().listarJSONProyectosXUsuario(dnicif);
 					
 					System.out.println(respuestaJSON);
 					
@@ -254,5 +283,5 @@ public class SV_GestionProyectos extends HttpServlet {
 
 
 		}
-	}
+	
 }

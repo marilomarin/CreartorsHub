@@ -125,7 +125,7 @@ public class SV_Login extends HttpServlet {
 				
 				} else {
 					
-					response.sendRedirect("index.html");
+					response.sendRedirect("back-creador.jsp");
 					
 				}
 			

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"modelo","l":"Candidatura"},{"p":"modelo","l":"Chat"},{"p":"dao","l":"DaoCandidaturas"},{"p":"dao","l":"DaoChat"},{"p":"dao","l":"DaoProyectos"},{"p":"dao","l":"DaoUsuarios"},{"p":"dao","l":"DBconexion"},{"p":"modelo","l":"Proyecto"},{"p":"modelo","l":"Usuario"}];updateSearchResults();

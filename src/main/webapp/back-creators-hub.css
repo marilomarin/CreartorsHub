@@ -5,7 +5,8 @@
 0.0 General
 1.0 Menú lateral
 2.0 Panel principal
-3.0 Versión responsive
+3.0 Formularios
+4.0 Buscador
 	3.1 Menú lateral 
 
 --------------------------------------------------------------*/
@@ -80,9 +81,8 @@ body {
 
 /* >> 2.0 Panel principal */
 
-.panel-pantalla{
-    background-color: azure;
-    border: 3px solid #b0dae0;
+.panel-pantalla-empresa,
+.panel-pantalla-creador{
     height: 800px;
     width: 70%;
     grid-area: panel-pantalla; 
@@ -97,18 +97,40 @@ body {
     transform: translateY(-50%);
 }
 
+.panel-pantalla-empresa{
+    background-color: azure;
+    border: 3px solid #b0dae0;
+}
+
+.panel-pantalla-creador{
+    background-color:cornsilk;
+    border: 3px solid #f1b945;
+}
+
 .panel{
     position: absolute;
     top: -500%;
     width: 100%;
 }
 
-.active-tab{
+.active-tab-empresa,
+.active-tab-creador{
     position: relative;
     top: 0px;
     border: 1px solid #f9b2c4;
     background-color: #f9b2c4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.active-tab-empresa{
+    border: 1px solid #f9b2c4;
+    background-color: #f9b2c4;
+}
+
+.active-tab-creador{
+    border: 1px solid #b0dae0;
+    background-color: #b0dae0;
+    color: black;
 }
 
 .active-panel{
@@ -138,6 +160,18 @@ body {
     
 }
 
+#formularioPreferencias {
+    width: 70%;
+    background-color: #b0a332;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    
+}
+
 #msj-preferencias{
 	margin-bottom: 15px;
 }
@@ -156,6 +190,20 @@ body {
 
 .columna{
 	width: 250px;
+}
+
+#formularioPreferencias input[type="text"],
+#formularioPreferencias input[type="date"],
+#formularioPreferencias input[type="tel"],
+#formularioPreferencias select,
+#formularioPreferencias textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    resize: vertical;
 }
 
 #contenedorProyectos input[type="text"],
@@ -178,6 +226,7 @@ body {
 }
 
 #contenedorProyectos input[type="submit"],
+#formularioPreferencias input[type="submit"],
 #contenedorProyectos button[type="button"],
 #contenedorFormularios input[type="submit"]  {
     background-color: #ffffff;
@@ -191,6 +240,7 @@ body {
 }
 
 #contenedorProyectos input[type="submit"]:hover,
+#formularioPreferencias input[type="submit"]:hover,
 #contenedorProyectos button[type="button"]:hover,
 #contenedorFormularios input[type="submit"]:hover  {
     transform: translateY(-5px); /* Hacer efecto bounce */
@@ -218,6 +268,7 @@ body {
 }
 
 .popup-contenido {
+	padding-top: 50px;
 	display: flex; 
 	flex-direction: column;
     justify-content: center; 
@@ -265,4 +316,68 @@ body {
     cursor: pointer;
 }
 
+#letra-peq{
+	font-size: x-small;
+}
 
+#precio{
+	padding: 15px 15px;
+	border-radius: 20px;
+}
+
+#enviar-candidatura{
+	background-color:#b0a332;
+   	font-family: "Poppins";
+   	font-weight: 600;
+   	font-size:large;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+#enviar-candidatura:hover {
+    transform: translateY(-5px);
+    transition: transform 0.5s;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* >> 4.0 Buscador */
+
+.buscador-categorias{
+	margin-top: 40px;
+	margin-bottom: -40px;
+}
+
+#categoria-form{
+	margin-left: 10px;
+	margin-right: 10px;
+  	padding: 5px; 
+  	border: 1px solid #ccc; 
+  	border-radius: 20px; 
+  	font-size: 16px; 
+}
+
+#buscar-button{
+    background-color: #b0dae0;
+    border: 1px solid #ccc; 
+    font-family: "Poppins";
+    color: black;
+    padding: 10px 20px;
+    font-size: 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#buscador-categorias input[type="submit"]:hover  {
+	background-color: #f9b2c4;
+    transform: translateY(-5px); /* Hacer efecto bounce */
+    transition: transform 0.5s; /* Hacero suave */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
