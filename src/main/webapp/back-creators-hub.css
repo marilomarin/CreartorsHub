@@ -126,16 +126,47 @@ body {
     margin: 50px auto;
 }
 
-#contenedorProyectos label {
+#contenedorFormularios {
+    width: 70%;
+    background-color: #b0a332;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    
+}
+
+#msj-preferencias{
+	margin-bottom: 15px;
+}
+
+#contenedorProyectos label{
     display: block;
     margin-top: 10px;
     margin-bottom: 3px;
 }
 
+
+.contenedor-columnas {
+    display: flex;
+    gap: 30px; 
+}
+
+.columna{
+	width: 250px;
+}
+
 #contenedorProyectos input[type="text"],
 #contenedorProyectos input[type="date"],
 #contenedorProyectos select,
-#contenedorProyectos textarea {
+#contenedorProyectos textarea,
+#contenedorFormularios input[type="text"],
+#contenedorFormularios input[type="email"],
+#contenedorFormularios input[type="tel"],
+#contenedorFormularios select,
+#contenedorFormularios textarea {
     width: 100%;
     padding: 8px;
     font-size: 12px;
@@ -146,7 +177,9 @@ body {
     resize: vertical;
 }
 
-#contenedorProyectos input[type="submit"] {
+#contenedorProyectos input[type="submit"],
+#contenedorProyectos button[type="button"],
+#contenedorFormularios input[type="submit"]  {
     background-color: #ffffff;
     color: black;
     padding: 10px 20px;
@@ -157,10 +190,79 @@ body {
     margin-top: 30px;
 }
 
-#contenedorProyectos input[type="submit"]:hover {
+#contenedorProyectos input[type="submit"]:hover,
+#contenedorProyectos button[type="button"]:hover,
+#contenedorFormularios input[type="submit"]:hover  {
     transform: translateY(-5px); /* Hacer efecto bounce */
     transition: transform 0.5s; /* Hacero suave */
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
+
+/* >> 4.0 Popup */
+
+.popup {
+    display: none; /* La pop-up está oculta inicialmente */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #b0a332;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* Asegura que la pop-up esté por encima del resto del contenido */
+}
+
+.popup-contenido {
+	display: flex; 
+	flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.button-descargar {
+    background-color: #b0dae0;
+    font-family: "Poppins";
+    font-weight: 500;
+    text-align: center;
+    color: black;
+    padding: 8px 15px;
+    font-size: 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.fa-file-arrow-down {
+    margin-left: 10px;
+}
+
+.cerrar-popup {
+   	background-color: #f9b2c4;
+   	font-family: "Poppins";
+   	font-weight: 600;
+   	font-size:large;
+    color: black;
+    padding: 10px 20px;
+    font-size: 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.button-descargar:hover,
+.cerrar-popup:hover {
+	color:black;
+    transform: translateY(-5px); /* Hacer efecto bounce */
+    transition: transform 0.5s; /* Hacero suave */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
 

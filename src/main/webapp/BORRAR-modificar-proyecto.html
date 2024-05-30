@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto</title>
+    <link rel="stylesheet" href="creartors-hub.css">
+
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Biblioteca Font Awesome (iconos) -->
+    <script src="https://kit.fontawesome.com/cf5c140da9.js" crossorigin="anonymous"></script>
+    
+    <script src="modificarProyectos.js"></script>
+   
+
+</head>
+
+<body>
+
+    <div class="topbar">
+        YA DISPONIBLE: Descárgate CreArtors Hub App (para IOs y Android)
+    </div>
+
+<div class="contenedor">
+
+    <div class="header-menu">
+
+        <nav class="menu">
+
+            <div class="logo">
+                <img src="img/logo-creartors-hub.png" alt="Logo de Creartors Hub">
+            </div>
+
+            <div id="toggle-menu" class="toggle-menu">
+                <img src="/img/icon-toggle.png">
+            </div>
+
+            <ul>
+                <li class="dropdown-menu">
+                    <a href="#">Servicios <i class="fa-regular fa-chevron-down"></i></a>
+                    <div class="dropdown-menu-servicios">
+                        <div class="sub-dropdown">
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por categoría :</div>
+                            <div class="dropdown-content">
+                                <a href="#">Contenido UGC</a>
+                                <a href="#">Vídeo</a>
+                                <a href="#">Fotografía</a>
+                                <a href="#">Ilustración</a>
+                                <a href="#">Diseño Gráfico</a>
+                                <a href="#">Motions Graphics</a>
+                                <a href="#">Artes Plásticas</a>
+                            </div>
+                        </div>
+                        <div class="sub-dropdown">
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por plataforma :</div>
+                            <div class="dropdown-content">
+                                <a href="#">Instagram Reels</a>
+                                <a href="#">TikTok</a>
+                                <a href="#">YouTube</a>
+                                <a href="#">Contenido Web</a>
+                                <a href="#">Marketplaces</a>
+                                <a href="#">Editorial</a>
+                                <a href="#">Social Ads 360</a>
+                            </div>
+                        </div>
+                        <div class="sub-dropdown">
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por industria :</div>
+                            <div class="dropdown-content">
+                                <a href="#">Moda</a>
+                                <a href="#">Cosmética</a>
+                                <a href="#">Deporte y Wellness</a>
+                                <a href="#">Viajes y Lifestyle</a>
+                                <a href="#">Apps y Videojuegos</a>
+                                <a href="#">Electrónica</a>
+                                <a href="#">Agencias y Publicidad</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">Cómo funciona</a></li>
+                <li><a href="#">Conviértete en un CreArtor</a></li>
+                <li><a href="#">Tarifas</a></li>
+            </ul>
+
+        </nav>
+
+      </div>
+
+     <div class="header-login">
+        <button class="boton-iniciar-sesion">Iniciar Sesión <i class="fa-solid fa-user" style="margin-left: 5px;"></i></button>
+        <button class="boton-suscribirme">Registrarme</button>
+    </div>
+</div>
+
+<!-- Termina zona Header -->
+
+<section class="contenedorProyectos" style="display: none;">
+
+    <form name="formulario-proyecto" action="SV_GestionProyectos" method="post" enctype="multipart/form-data">
+		
+		<input type="hidden" id="idProyecto" name="idProyecto">
+		
+        <label for="titulo_proyecto">Título del proyecto:</label>
+        <input type="text" id="titulo_proyecto" name="titulo_proyecto" required>
+    
+        <label for="categoria">¿Qué tipo de servicios necesitas?</label>
+        <select id="categoria" name="categoria" required>
+            <option value="" disabled selected>Selecciona una categoría</option>
+            <option value="contenido_UGC">Contenido UGC</option>
+            <option value="video">Vídeo</option>
+            <option value="fotografia">Fotografía</option>
+            <option value="ilustracion">Ilustración</option>
+            <option value="diseno_grafico">Diseño Gráfico</option>
+            <option value="motions_graphics">Motions Graphics</option>
+            <option value="artes_plasticas">Artes Plásticas</option>
+        </select>
+    
+        <label for="descripcion">Por favor, describe brevemente en qué consiste el proyecto a continuación:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+    
+        <label for="fecha_entrega">Fecha límite de entrega:</label>
+        <input type="date" id="fecha_entrega" name="fecha_entrega" required>
+    
+        <label for="archivo_adjunto">Por favor, adjunta el briefing detallado del proyecto:</label>
+        <input type="file" id="archivo_adjunto" name="archivo_adjunto" accept=".doc,.docx,.pdf" required>
+        <br>
+        <input type="submit" value="¡Publicar proyecto!">
+
+    </form>
+</section>
+
+
+
+<!-- Empieza zona Footer -->
+
+<div class="contenedor">
+
+    <div class="divisor-horizontal">
+        <div class="linea-divisoria"></div>
+    </div>
+
+    <div class="footer">
+
+        <div class="footer-columnas">
+
+            <div class="columna-f1">
+                <div id="titulo-footer"><strong>Por categoría</strong></div>
+                     <ul class="lista-footer">
+                         <li>Contenido UGC</li>
+                         <li>Vídeo</li>
+                         <li>Fotografía</li>
+                         <li>Ilustración</li>
+                         <li>Diseño Gráfico</li>
+                         <li>Motions Graphics</li>
+                         <li>Artes Plásticas</li>
+                     </ul>
+            </div>  
+            
+            <div class="columna-f2">
+                <div id="titulo-footer"><strong>Por plataforma</strong></div>
+                     <ul class="lista-footer">
+                         <li>Instagram Reels</li>
+                         <li>TikTok</li>
+                         <li>YouTube</li>
+                         <li>Contenido Web</li>
+                         <li>Marketplaces</li>
+                         <li>Editorial</li>
+                         <li>Social Ads 360</li>
+                     </ul>
+            </div> 
+
+            <div class="columna-f3">
+                <div id="titulo-footer"><strong>Por industria</strong></div>
+                     <ul class="lista-footer">
+                         <li>Moda</li>
+                         <li>Cosmética</li>
+                         <li>Deporte y Wellness</li>
+                         <li>Viajes y Lifestyle</li>
+                         <li>Apps y Videojuegos</li>
+                         <li>Electrónica</li>
+                         <li>Agencias y Publicidad</li>
+                     </ul>
+            </div> 
+
+            <div class="columna-f4">
+                <div id="titulo-footer"><strong>Más información</strong></div>
+                     <ul class="lista-footer">
+                         <li>Aviso Legal</li>
+                         <li>Política de Privacidad</li>
+                         <li>Política de Cookies</li>
+                         <li>FAQs</li>
+                         <li>Tarifas</li>
+                    </ul>
+            </div> 
+
+            <div class="columna-f5">
+                <div id="titulo-footer"><strong>Contacta con nosotros</strong></div>
+                     <ul class="lista-footer">
+                         <li>Av. de las Ciencias, 38</li>
+                         <li>11385 Madrid</li>
+                         <li><i class="fa-solid fa-phone" style="margin-right: 10px;"></i>0026 749 835 65</li>
+                         <li><i class="fa-solid fa-envelope" style="margin-right: 10px;"></i>info@creartorshub.com</li>
+                         <li class="logo-footer"><img src="/img/logo-creartors-hub.png" alt="Logo de CreArtors Hub"></li>
+
+                     </ul>
+            </div> 
+        
+        </div>
+        
+    </div> 
+
+</div>
+
+<div class="footer-bottom">
+            
+    <div class="copyright">2024 © CreArtors Hub</div>
+    
+    <div class="social-links"><i class="fa-brands fa-instagram" style="margin-right: 20px;"></i><i class="fa-brands fa-tiktok" style="margin-right: 20px;"></i><i class="fa-brands fa-linkedin-in"></i></div>
+     
+</div>
+            
+
+</div>
+
+</body>
+</html>

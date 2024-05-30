@@ -122,7 +122,7 @@ p {
     display: none;
     font-style: italic;
     text-align: center;
-    background-image: url("/img/comillas-op.png");
+    background-image: url("img/comillas-op.png");
     background-size: contain;
     background-position: center; 
     background-repeat: no-repeat;
@@ -226,7 +226,8 @@ p {
   box-sizing: border-box; /* Para incluir el padding en el ancho */
 }
 
-#campo-form {
+#campo-form,
+#campo-form-textarea {
   padding: 5px; 
   margin-top: 5px;
   margin-left: 25px;
@@ -236,8 +237,24 @@ p {
   font-size: 16px; 
 }
 
+#campo-form-textarea {
+  height: 150px;
+  font-family: "Poppins";
+}
+
 #label-form{
   margin-left: 15px;
+}
+
+
+#categoria {
+  padding: 5px; 
+  margin-top: 5px;
+  margin-left: 25px;
+  width: 80%;
+  border: 1px solid #ccc; 
+  border-radius: 20px; 
+  font-size: 16px; 
 }
 
 #radio{

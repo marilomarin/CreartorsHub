@@ -56,10 +56,31 @@ public class DaoProyectos {
 			ps.close();
 		
 	}
+	
+	public Proyecto obtenerPorId(int idProyecto) throws SQLException {
+
+	    String sql = "SELECT * FROM Proyectos WHERE idProyecto=?";
+
+	    try (PreparedStatement ps = con.prepareStatement(sql)) {
+	    	
+	        ps.setInt(1, idProyecto);
+	        
+	        try (ResultSet rs = ps.executeQuery()) {
+	        	
+	            if (rs.next()) {
+	            	//Aquí ponemos todos los campos del Proyecto
+	                return new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+	                
+	            } else {
+	                throw new SQLException("No se encontró el proyecto con id: " + idProyecto);
+	            }
+	        }
+	    }
+	}
 
 	public void actualizar(Proyecto p) throws SQLException {
 		
-		String sql = "UPDATE Proyectos SET TituloProyecto=?,Categoria=?,Descripcion=?,FechaEntrega=?, ArchivoAdjunto=? WHERE ID=?";
+		String sql = "UPDATE Proyectos SET TituloProyecto=?,Categoria=?,Descripcion=?,FechaEntrega=?, ArchivoAdjunto=? WHERE IDProyecto=?";
 		
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, p.getTituloProyecto());
@@ -90,32 +111,29 @@ public class DaoProyectos {
 			ps.close();
 	}
 	
+	// MÉTODOS PARA LISTAR
 	
-	//Esto es una lista de un solo elemento
-
-	public Proyecto obtenerPorId(int idProyecto) throws SQLException {
-		
-		String sql = "SELECT * FROM Proyectos WHERE idProyecto=?";
-		
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, idProyecto);
-		
-			ResultSet rs = ps.executeQuery();
-		
-			rs.next(); //Muevo el puntero una posición 
+	//Método para convertir los objetos a JSON
 	
-		Proyecto p = new Proyecto(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
-
-		return p;
+	public String listarJSON(String dnicif_Empresa) throws SQLException {
+		
+		String json = "";
+		Gson gson = new Gson();
+		
+		json = gson.toJson(this.listar(dnicif_Empresa));
+		
+		return json;
+		
 	}
 	
 	//Método para listar los proyectos
 	
-	public ArrayList<Proyecto> listar() throws SQLException{
+	public ArrayList<Proyecto> listar(String dnicif) throws SQLException{
 		
-		String sql = "SELECT * FROM Proyectos";
+		String sql = "SELECT * FROM Proyectos WHERE DNICIF_Empresa = ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, dnicif);
 		
 		ResultSet rs = ps.executeQuery();
 		
@@ -127,18 +145,44 @@ public class DaoProyectos {
 				result = new ArrayList<Proyecto>();
 			}
 			
-			result.add(new Proyecto(rs.getInt("idProyecto"), rs.getString("tituloProyecto"), rs.getString("categoria"), rs.getString("descripcion"), rs.getString("fechaEntrega"), rs.getString("archivoAdjunto"), rs.getString("estado")));
+			result.add(new Proyecto(rs.getInt("idProyecto"), rs.getString("tituloProyecto"), rs.getString("categoria"), rs.getString("descripcion"), rs.getString("fechaEntrega"), rs.getString("archivoAdjunto"), rs.getString("estado"), rs.getString("dnicif_Empresa")));
 		}
 		
 		return result;
-	 	
 	}
+
+	
+	
+	//ORIGINAL. Método para listar los proyectos
+	
+	//public ArrayList<Proyecto> listar() throws SQLException{
+		
+	//	String sql = "SELECT * FROM Proyectos DNICIF_Empresa = ?";
+		
+	//	PreparedStatement ps = con.prepareStatement(sql);
+		
+	//	ResultSet rs = ps.executeQuery();
+		
+	//	ArrayList<Proyecto> result = null;
+		
+	//	while(rs.next()){
+			
+	//		if (result == null){
+	//			result = new ArrayList<Proyecto>();
+	//		}
+			
+	//		result.add(new Proyecto(rs.getInt("idProyecto"), rs.getString("tituloProyecto"), rs.getString("categoria"), rs.getString("descripcion"), rs.getString("fechaEntrega"), rs.getString("archivoAdjunto"), rs.getString("estado"), rs.getString("dnicif_Empresa")));
+	//	}
+		
+	//	return result;
+	 	
+	//}
 	
 	//Método para listar por un dato:
 	
 /*	public Usuario listar(String categoria) throws SQLException{
 		
-		String sql = "SELECT * FROM Proyecto WHERE categoria=?";
+		String sql = "SELECT * FROM Proyectos WHERE categoria=?";
 		
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, categoria);
@@ -170,19 +214,6 @@ public class DaoProyectos {
 	 }
 	 
 */
-	
-	//Método para convertir los objetos a JSON
-	
-	public String listarJSON() throws SQLException {
-		
-		String json = "";
-		Gson gson = new Gson();
-		
-		json = gson.toJson(this.listar());
-		
-		return json;
-		
-	}
 
 
 }
