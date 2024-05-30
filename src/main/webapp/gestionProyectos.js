@@ -27,13 +27,15 @@ window.addEventListener("DOMContentLoaded", function(){
         		categoriaMostrada = "Artes Plásticas";
 				}else if (datos[i].categoria == "ilustracion") {
         		categoriaMostrada = "Ilustración";
+				}else if (datos[i].categoria == "video") {
+        		categoriaMostrada = "Vídeo";
 				}
     
         	html += "<td id='bloque'><strong>Categoría:</strong><br> " + categoriaMostrada + "</td>";
       		html += "<td id='bloque'><strong>Fecha de entrega:</strong><br> " + datos[i].fechaEntrega + "</td>";
       		html += "<td id='bloque'><strong>Estado:</strong><br> ";
       			if (datos[i].estado === "Sin asignar") {
-    			html += "<span id='open'>Recibiendo candidatos</span>";
+    			html += "<span id='open'>Recibiendo candidaturas</span>";
 				} else if (datos[i].estado === "Asignado"){
     			html += "<span id='assigned'>Creator asignado</span>";
 				} else if (datos[i].estado === "Cerrado"){
@@ -42,17 +44,17 @@ window.addEventListener("DOMContentLoaded", function(){
     			html += "<span id='pending'>Pendiente de revisión</span>";
 				}
 
-      		html += "<td id='icono'><a href=# "+datos[i].id+")'><i class='fa-solid fa-eye'></i></a></td>";
+      		html += "<td id='icono'><a href=# "+datos[i].idProyecto+")'><i class='fa-solid fa-eye'></i></a></td>";
       		// No mostrar el icono de "Modificar" si el proyecto ha finalizado
         	if (datos[i].estado === "Cerrado") {
             html += "<td></td>"; 
         	} else {
-            html += "<td id='icono'><a href='modificar-proyecto.html?id=" + datos[i].id + "&op=2'><i class='fa-solid fa-pen-to-square'></i></a></td>"; 
+            html += "<td id='icono'><a href='modificar-proyecto.html?idProyecto=" + datos[i].idProyecto + "&op=2'><i class='fa-solid fa-pen-to-square'></i></a></td>"; 
         	}
-      		html += "<td id='icono'><a href=#' onclick='borrar("+datos[i].id+")'><i class='fa-solid fa-trash'></i></a></td>";
+      		html += "<td id='icono'><a href=#' onclick='borrar("+datos[i].idProyecto+")'><i class='fa-solid fa-trash'></i></a></td>";
       		// Añadir el icono de chat solo si el estado es "Creator asignado" o "Pendiente de revisión"
         	if (datos[i].estado === "Pendiente" || datos[i].estado === "Asignado") {
-            html += "<td id='icono'><a href='#' "+datos[i].id+")'><i class='fa-solid fa-comments'></i></a></td>";
+            html += "<td id='icono'><a href='#' "+datos[i].idProyecto+")'><i class='fa-solid fa-comments'></i></a></td>";
         	} else {
             html += "<td></td>"; 
         	}
@@ -78,10 +80,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	//La función de borrar realmente habría que hacerla con css y bonita
 	
-	function borrar(id){
+	function borrar(idProyecto){
 		
 		if(confirm("Por favor, confirma que quieres BORRAR los datos.")){
-			fetch('SV_GestionProyectos?id='+id+'&op=3')
+			fetch('SV_GestionProyectos?idProyecto='+idProyecto+'&op=3')
 			.then(response => response.json())
 			.then(data => pintarTabla(data))
 		}else{

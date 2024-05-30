@@ -1,8 +1,8 @@
 window.addEventListener("DOMContentLoaded", function(){
 
-function llamada(id, op){
-		console.log(id);
-		fetch('SV_GestionProyectos?id='+id+"&op="+op)
+function llamada(idProyecto, op){
+		console.log(idProyecto);
+		fetch('SV_GestionProyectos?idProyecto='+idProyecto+"&op="+op)
 			.then(response => response.json())
 			.then(data => pintarFormulario(data))
 	}
@@ -18,21 +18,21 @@ function llamada(id, op){
 		
 		
 		function pintarFormulario(datos){
-			document.getElementById("id").value = datos.id;
+			document.getElementById("idProyecto").value = datos.idProyecto;
 			document.getElementById("titulo_proyecto").value = datos.tituloProyecto;
 			document.getElementById("categoria").value = datos.categoria;
 			document.getElementById("descripcion").value = datos.descripcion;
 			document.getElementById("fecha_entrega").value = datos.fechaEntrega;
-			 console.log("ID obtenido al pintar el formulario:", datos.id);
+			 console.log("ID obtenido al pintar el formulario:", datos.idProyecto);
 
 		}
 		
 		
 		
 		window.onload = function(){
-			let id = getParameterByName("id");
+			let idProyecto = getParameterByName("idProyecto");
 			let op = getParameterByName("op");
-			llamada(id,op);
+			llamada(idProyecto,op);
 		}
 		
 		

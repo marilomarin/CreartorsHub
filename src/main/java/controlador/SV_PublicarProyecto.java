@@ -130,7 +130,7 @@ public class SV_PublicarProyecto extends HttpServlet {
 			System.out.print("No se ha podido insertar en la base de datos");
 		}
         
-        response.sendRedirect("listado-proyectos.html");
+        response.sendRedirect("back-empresa.jsp#mis-proyectos");
 
         
 	}else {

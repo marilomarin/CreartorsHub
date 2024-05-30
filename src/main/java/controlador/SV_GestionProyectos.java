@@ -61,7 +61,10 @@ public class SV_GestionProyectos extends HttpServlet {
 		
 		//Tengo que activar aquí también la sesión ¿?
 		//sesion = request.getSession();
-		//int idSesion = Integer.parseInt((String) sesion.getAttribute("id"));
+
+		HttpSession sesion = request.getSession();
+		
+		if(sesion.getAttribute("rol").equals("Empresa")) {
 		
 		
 		PrintWriter out = response.getWriter();
@@ -93,7 +96,9 @@ public class SV_GestionProyectos extends HttpServlet {
 			
 			try {
 				proyectos = new DaoProyectos();
-				out.print(proyectos.listarJSON());
+				// ORIGINAL out.print(proyectos.listarJSON());
+				String dnicif = (String) sesion.getAttribute("dnicif");
+				out.print(proyectos.listarJSON(dnicif));
 				
 
 			} catch (SQLException e) {
@@ -112,7 +117,8 @@ public class SV_GestionProyectos extends HttpServlet {
 				
 				System.out.println("Se ha borrado el ID: " + idProyecto);
 				
-				out.print(proyectos.listarJSON());
+				String dnicif = (String) sesion.getAttribute("dnicif");
+				out.print(proyectos.listarJSON(dnicif));
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -123,7 +129,7 @@ public class SV_GestionProyectos extends HttpServlet {
 			
 		}
 		
-				
+		}				
 		
 	}
 
@@ -133,12 +139,17 @@ public class SV_GestionProyectos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//Método para enviar una respuesta JSON al cliente desde el servidor
+		HttpSession sesion = request.getSession();
+		
+		if(sesion.getAttribute("rol").equals("Empresa")) {
+		
+		//Método para LISTAR, enviando una respuesta JSON al cliente desde el servidor
 		
 				String respuestaJSON;
 				
 				try {
-					respuestaJSON = DaoProyectos.getInstance().listarJSON();
+					String dnicif = (String) sesion.getAttribute("dnicif");
+					respuestaJSON = DaoProyectos.getInstance().listarJSON(dnicif);
 					
 					System.out.println(respuestaJSON);
 					
@@ -151,6 +162,8 @@ public class SV_GestionProyectos extends HttpServlet {
 					e.printStackTrace();
 				}
 		
+		//Obtenemos los datos de la sesión
+				
 		request.getSession();
 		
 		if(sesion.getAttribute("rol").equals("Empresa")) {
@@ -235,12 +248,13 @@ public class SV_GestionProyectos extends HttpServlet {
 		}
 		
 	
-		response.sendRedirect("listado-proyectos.html");
+		response.sendRedirect("back-empresa.jsp#mis-proyectos");
 	
 	} else {
 		System.out.println("El usuario no tiene permiso para realizar esta acción");
 	}
 
 
-}
+		}
+	}
 }
