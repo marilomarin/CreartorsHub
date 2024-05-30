@@ -1,0 +1,76 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#listado{
+	display: flex;
+    flex-direction: column; /* Alinea los elementos en una columna */
+    align-items: center;
+    margin-top: 50px;
+    max-height: 700px; 
+    overflow-y: auto; /* Habilita el scroll cuando sea necesario */
+}
+
+.tablaListado{
+	text-align: left;
+	background-color: white;
+	padding: 20px 20px;
+	border: 1px solid #b0a332;
+	border-radius: 20px;
+}
+
+td{
+	padding-bottom: 40px;
+	padding-top: 40px;
+	
+}
+
+tr:not(:last-child) td { /* Para no aplicar la línea en la última fila */
+    border-bottom: 1px solid #b0a332;
+}
+
+#bloque{
+	padding-right: 40px;
+}
+
+#icono{
+	padding-right: 15px;
+}
+
+a{
+	color: black;
+}
+
+a:hover{
+	color: #b0a332;
+}
+
+#open {
+    background-color: #f9b2c4;
+    border-radius: 20px;
+    font-size:xx-small;
+    padding: 5px 15px;
+}
+
+#closed {
+    background-color: lightgrey;
+    border-radius: 20px;
+    font-size:xx-small;
+    padding: 5px 15px;
+}
+
+#pending {
+    background-color: #f1b945;
+    border-radius: 20px;
+    font-size:xx-small;
+    padding: 5px 15px;
+}
+
+#assigned {
+    background-color: #8eb478;
+    border-radius: 20px;
+    font-size:xx-small;
+    padding: 5px 15px;
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | Empresas</title>
+    <link rel="stylesheet" href="creartors-hub.css">
+    <link rel="stylesheet" href="registro.css">
+
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Biblioteca Font Awesome (iconos) -->
+    <script src="https://kit.fontawesome.com/cf5c140da9.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="topbar">
+        YA DISPONIBLE: Descárgate CreArtors Hub App (para IOs y Android)
+    </div>
+
+<div class="contenedor">
+
+    <div class="header-menu">
+
+        <nav class="menu">
+
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo-creartors-hub.png" alt="Logo de Creartors Hub">
+                </a>
+            </div>
+
+            <div id="toggle-menu" class="toggle-menu">
+                <img src="/img/icon-toggle.png">
+            </div>
+
+            <ul>
+                <li class="dropdown-menu">
+                    <a href="#">Servicios <i class="fa-regular fa-chevron-down"></i></a>
+                    <div class="dropdown-menu-servicios">
+                        <div class="sub-dropdown">
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por categoría :</div>
+                            <div class="dropdown-content">
+                                <a href="#">Contenido UGC</a>
+                                <a href="#">Vídeo</a>
+                                <a href="#">Fotografía</a>
+                                <a href="#">Ilustración</a>
+                                <a href="#">Diseño Gráfico</a>
+                                <a href="#">Motions Graphics</a>
+                                <a href="#">Artes Plásticas</a>
+                            </div>
+                        </div>
+                        <div class="sub-dropdown">
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por plataforma :</div>
+                            <div class="dropdown-content">
+                                <a href="#">Instagram Reels</a>
+                                <a href="#">TikTok</a>
+                                <a href="#">YouTube</a>
+                                <a href="#">Contenido Web</a>
+                                <a href="#">Marketplaces</a>
+                                <a href="#">Editorial</a>
+                                <a href="#">Social Ads 360</a>
+                            </div>
+                        </div>
+                        <div class="sub-dropdown">
+                            <div class="titulo-submenu"><i class="fa-solid fa-bolt" style="margin-right: 5px;"></i>Por industria :</div>
+                            <div class="dropdown-content">
+                                <a href="#">Moda</a>
+                                <a href="#">Cosmética</a>
+                                <a href="#">Deporte y Wellness</a>
+                                <a href="#">Viajes y Lifestyle</a>
+                                <a href="#">Apps y Videojuegos</a>
+                                <a href="#">Electrónica</a>
+                                <a href="#">Agencias y Publicidad</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">Cómo funciona</a></li>
+                <li><a href="#">Conviértete en un CreArtor</a></li>
+                <li><a href="#">Tarifas</a></li>
+            </ul>
+
+        </nav>
+
+      </div>
+
+     <div class="header-login">
+        <a href="login.html" class="boton-iniciar-sesion">Iniciar Sesión <i class="fa-solid fa-user" style="margin-left: 5px;"></i></a>
+        <a href="registro.html" class="boton-suscribirme">Registrarme</a>
+    </div>
+</div>
+
+<!-- Termina zona Header -->
+
+<div class="fondo-registro-empresas">
+
+    <section class="contenedorVideo-empresas">
+
+        <video class="videoFormulario-empresas" src="img/video-registro-empresas.mp4" type="video/mp4" autoplay muted loop>
+        </video>
+    
+    </section>
+
+    <section class="contenedorFormulario-empresas">
+
+        <div class="titulo-pagina">
+            <h2>Crea tu perfil de empresa</h2>
+        </div>
+
+    <form name="formulario-alta" action="SV_AltasUsuario" method="post">
+
+        <div class="columna">
+            <label for="email" id="label-form">Email*:</label><br>
+            <input type="email" id="campo-form" name="email" required><br><br>
+            
+            <label for="pass" id="label-form">Introduce una contraseña*:</label><br>
+            <input type="text" id="campo-form" name="pass" required><br><br>
+            
+            <label for="nombre" id="label-form">Nombre*:</label><br>
+            <input type="text" id="campo-form" name="nombre" required><br><br>
+            
+            <label for="apellidos" id="label-form">Apellidos*:</label><br>
+            <input type="text" id="campo-form" name="apellidos" required><br><br>
+            
+            <label for="nombre_empresa" id="label-form">Razón Social*:</label><br>
+            <input type="text" id="campo-form" name="razon_social" required><br><br>
+
+            <label for="cif_nie" id="label-form">CIF/NIE*:</label><br>
+            <input type="text" id="campo-form" name="cif_nie" required><br><br>
+        </div>
+
+        <div class="columna">
+            <label for="direccion" id="label-form">Dirección*:</label><br>
+            <input type="text" id="campo-form" name="direccion" required><br><br>
+            
+            <label for="direccion2" id="label-form">Dirección 2 (opcional):</label><br>
+            <input type="text" id="campo-form" name="direccion2"><br><br>
+            
+            <label for="ciudad" id="label-form">Ciudad*:</label><br>
+            <input type="text" id="campo-form" name="ciudad" required><br><br>
+            
+            <label for="provincia" id="label-form">Provincia*:</label><br>
+            <input type="text" id="campo-form" name="provincia" required><br><br>
+            
+            <label for="codigo_postal" id="label-form">Código postal*:</label><br>
+            <input type="text" id="campo-form" name="codigo_postal" required><br><br>
+            
+            <label for="telefono" id="label-form">Teléfono*:</label><br>
+            <input type="tel" id="campo-form" name="telefono" required><br><br>        
+        </div>
+
+        <div class="footer-form">
+			
+			<input type="checkbox" id="rol_empresa" name="rol" value="empresa" required>
+			<label for="rol">Confirmo que quiero registrarme con perfil de <strong>Empresa</strong></label><br><br> 
+
+
+	        <label for="suscribirse">¿Quieres suscribirte a nuestro boletín?:</label><br>
+	        <input type="radio" id="radio" name="suscribirse" value="si">
+	        <label for="suscribirse_si">Sí</label>
+	        <input type="radio" id="radio" name="suscribirse" value="no">
+	        <label for="suscribirse_no">No</label><br><br>
+	
+	        <input type="submit" value="Crear Cuenta" class="boton-enviar">
+
+        </div>
+
+    </form>
+    </section>
+
+</div>
+
+</body>
+
+<!-- Empieza zona Footer -->
+
+<footer>
+
+    <div class="divisor-horizontal">
+        <div class="linea-divisoria"></div>
+    </div>
+
+    <div class="footer-columnas">
+
+        <div class="columna-f1">
+            <div id="titulo-footer"><strong>Por categoría</strong></div>
+                <ul class="lista-footer">
+                    <li><a href="#">Contenido UGC</a></li>
+                    <li><a href="#">Vídeo</a></li>
+                    <li><a href="#">Fotografía</a></li>
+                    <li><a href="#">Ilustración</a></li>
+                    <li><a href="#">Diseño Gráfico</a></li>
+                    <li><a href="#">Motions Graphics</a></li>
+                    <li><a href="#">Artes Plásticas</a></li>
+                </ul>
+        </div>  
+            
+        <div class="columna-f2">
+            <div id="titulo-footer"><strong>Por plataforma</strong></div>
+                <ul class="lista-footer">
+                    <li><a href="#">Instagram Reels</a></li>
+                    <li><a href="#">TikTok</a>TikTok</li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Contenido Web</a></li>
+                    <li><a href="#">Marketplaces</a></li>
+                    <li><a href="#">Editorial</a></li>
+                    <li><a href="#">Social Ads 360</a></li>
+                </ul>
+        </div> 
+
+        <div class="columna-f3">
+            <div id="titulo-footer"><strong>Por industria</strong></div>
+                <ul class="lista-footer">
+                    <li><a href="#">Moda</a></li>
+                    <li><a href="#">Cosmética</a></li>
+                    <li><a href="#">Deporte y Wellness</a></li>
+                    <li><a href="#">Viajes y Lifestyle</a></li>
+                    <li><a href="#">Apps y Videojuegos</a></li>
+                    <li><a href="#">Electrónica</a></li>
+                    <li><a href="#">Agencias y Publicidad</a></li>
+                </ul>
+        </div> 
+
+        <div class="columna-f4">
+            <div id="titulo-footer"><strong>Más información</strong></div>
+                <ul class="lista-footer">
+                    <li><a href="#">Aviso Legal</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Política de Cookies</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Tarifas</a></li>
+                </ul>
+        </div> 
+
+        <div class="columna-f5">
+            <div id="titulo-footer"><strong>Contacta con nosotros</strong></div>
+                <ul class="lista-footer">
+                    <li>Av. de las Ciencias, 38</li>
+                    <li>11385 Madrid</li>
+                    <li><i class="fa-solid fa-phone"></i>0026 749 835 65</li>
+                    <li><i class="fa-solid fa-envelope"></i>info@creartorshub.com</li>
+                    <li class="logo-footer"><img src="img/logo-creartors-hub.png" alt="Logo de CreArtors Hub"></li>
+                </ul>
+        </div> 
+        
+    </div>
+
+    <div class="footer-bottom">
+            
+        <div class="copyright">2024 © CreArtors Hub</div>
+    
+        <div class="social-links"><i class="fa-brands fa-instagram" style="margin-right: 20px;"></i><i class="fa-brands fa-tiktok" style="margin-right: 20px;"></i><i class="fa-brands fa-linkedin-in"></i></div>
+     
+    </div>
+            
+
+</footer>
+
+</html>

@@ -1,0 +1,166 @@
+
+/*--------------------------------------------------------------
+>>> TABLA DE CONTENIDOS:
+----------------------------------------------------------------
+0.0 General
+1.0 Menú lateral
+2.0 Panel principal
+3.0 Versión responsive
+	3.1 Menú lateral 
+
+--------------------------------------------------------------*/
+
+/* >> 0. General */
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.contenedor-panel{
+    display: grid;
+    grid-template-columns: 20% 1fr; /*Le pongo 1fr para que no me de error el fixed del menú lateral*/
+    grid-template-areas: 
+    "panel-menu panel-pantalla";
+}
+
+/* >> 1.0 Menú lateral */
+
+.panel-menu{
+    height: 100vh;
+    max-width: 20%;
+    position: fixed;
+    padding: 20px 20px;
+    display: inline-block;
+   /* border-right: 1px solid black; */
+    grid-area: panel-menu;
+}
+
+#logo-panel{
+    max-width: 100%;
+    padding: auto 10px;
+    margin-bottom: 40px;
+}
+
+#msj-bienvenida{
+    text-align: center;
+}
+
+.menu-vertical {
+    list-style-type: none;
+    padding: 20px 20px;
+    margin-top: 20px;
+    color: white;
+}
+
+.tabs {
+    padding: 10px 10px;
+    font-weight: 500;
+    background-color: #b0a332;
+    border: 1px solid #b0a332;
+    border-top-right-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.tabs:hover{
+    transform: translateY(-5px); /* Hacer efecto bounce */
+    transition: transform 0.5s; /* Hacerlo sueave */
+    cursor: pointer;
+}
+
+.fa-solid{
+    margin-right: 15px;
+}
+
+
+/* >> 2.0 Panel principal */
+
+.panel-pantalla{
+    background-color: azure;
+    border: 3px solid #b0dae0;
+    height: 800px;
+    width: 70%;
+    grid-area: panel-pantalla; 
+    margin: auto 40px;
+    padding: 40px;
+    overflow: hidden;
+    border-radius: 20px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+}
+
+.panel{
+    position: absolute;
+    top: -500%;
+    width: 100%;
+}
+
+.active-tab{
+    position: relative;
+    top: 0px;
+    border: 1px solid #f9b2c4;
+    background-color: #f9b2c4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.active-panel{
+    position: relative;
+    top: 0px;
+}
+
+/* >> 3.0 Formularios */
+
+#contenedorProyectos {
+    width: 50%;
+    background-color: #b0a332;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 50px auto;
+}
+
+#contenedorProyectos label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+#contenedorProyectos input[type="text"],
+#contenedorProyectos input[type="date"],
+#contenedorProyectos select,
+#contenedorProyectos textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    resize: vertical;
+}
+
+#contenedorProyectos input[type="submit"] {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    font-size: 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+#contenedorProyectos input[type="submit"]:hover {
+    transform: translateY(-5px); /* Hacer efecto bounce */
+    transition: transform 0.5s; /* Hacero suave */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
