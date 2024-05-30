@@ -5,6 +5,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+import com.google.gson.Gson;
+
+import dao.DaoProyectos;
 import dao.DaoUsuarios;
 import dao.DaoUsuarios;
 
@@ -34,6 +37,8 @@ public class Usuario {
 	protected String rol;
 	protected boolean boletin;
 	protected String categoria;
+	protected String portfolio;
+	protected String bio;
 	protected String pass;
 
 
@@ -42,6 +47,8 @@ public class Usuario {
 	public Usuario() {
 	}
 
+	
+	
 	public Usuario(String email, String nombre, String apellidos, String razonSocial, String dnicif,
 			String direccionLinea1, String direccionLinea2, String ciudad, String provincia, String cp, String telefono, String rol, boolean boletin, String pass) {
 
@@ -58,6 +65,35 @@ public class Usuario {
 		this.telefono = telefono;
 		this.rol = rol;
 		this.boletin = boletin;
+		this.pass = pass;
+	}
+	
+	public Usuario(String nombre, String apellidos, String razonSocial, String direccionLinea1, String direccionLinea2, String ciudad, String provincia, String cp, String telefono, boolean boletin, String pass) {
+
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.razonSocial = razonSocial;
+		this.direccionLinea1 = direccionLinea1;
+		this.direccionLinea2 = direccionLinea2;
+		this.ciudad = ciudad;
+		this.provincia = provincia;
+		this.cp = cp;
+		this.telefono = telefono;
+		this.boletin = boletin;
+		this.pass = pass;
+	}
+	
+	public Usuario(String nombre, String apellidos, String razonSocial, String direccionLinea1, String direccionLinea2, String ciudad, String provincia, String cp, String telefono, String pass) {
+
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.razonSocial = razonSocial;
+		this.direccionLinea1 = direccionLinea1;
+		this.direccionLinea2 = direccionLinea2;
+		this.ciudad = ciudad;
+		this.provincia = provincia;
+		this.cp = cp;
+		this.telefono = telefono;
 		this.pass = pass;
 	}
 	
@@ -78,6 +114,29 @@ public class Usuario {
 		this.rol = rol;
 		this.boletin = boletin;
 		this.categoria = categoria;
+		this.pass = pass;
+		
+		}
+	
+	public Usuario(String email, String nombre, String apellidos, String razonSocial, String dnicif, String direccionLinea1, String direccionLinea2, 
+			String ciudad, String provincia, String cp, String telefono, String rol, boolean boletin, String categoria, String portfolio, String bio, String pass) {
+
+		this.email = email;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.razonSocial = razonSocial;
+		this.dnicif = dnicif;
+		this.direccionLinea1 = direccionLinea1;
+		this.direccionLinea2 = direccionLinea2;
+		this.ciudad = ciudad;
+		this.provincia = provincia;
+		this.cp = cp;
+		this.telefono = telefono;
+		this.rol = rol;
+		this.boletin = boletin;
+		this.categoria = categoria;
+		this.portfolio = portfolio;
+		this.bio = bio;
 		this.pass = pass;
 		
 		}
@@ -203,14 +262,7 @@ public class Usuario {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+	
 	
 	public String getCategoria() {
 		return categoria;
@@ -218,6 +270,32 @@ public class Usuario {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+	
+	
+	public String getPortfolio() {
+		return portfolio;
+	}
+
+	public void setPortfolio(String portfolio) {
+		this.portfolio = portfolio;
+	}
+	
+	
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 
@@ -230,10 +308,34 @@ public class Usuario {
 		return "Usuario [email=" + email + ", nombre=" + nombre + ", apellidos=" + apellidos + ", razonSocial="
 				+ razonSocial + ", dnicif=" + dnicif + ", direccionLinea1=" + direccionLinea1 + ", direccionLinea2="
 				+ direccionLinea2 + ", ciudad=" + ciudad + ", provincia=" + provincia + ", cp=" + cp + ", telefono="
-				+ telefono + ", rol=" + rol + ", boletin=" + boletin + ",  categoria=" + categoria +", pass=" + pass + "]";
+				+ telefono + ", rol=" + rol + ", boletin=" + boletin + ",  categoria=" + categoria +", portfolio=" + portfolio + ", bio=" + bio + ", pass=" + pass + "]";
 	}
 
 	
+	// Método para iniciar sesión
+	
+		public boolean iniciarSesion(String pass) throws SQLException {
+			
+			boolean ok = false;
+			
+			DaoUsuarios dao = new DaoUsuarios();
+			
+			Usuario u = DaoUsuarios.getInstance().login(this, pass); // Esto conecta con la bd y comprueba que devuelve un objeto
+			
+			if(u != null) {
+				
+				ok = true;
+				this.dnicif = u.getDnicif();
+				this.email = u.getEmail();
+				this.nombre = u.getNombre();
+				this.rol = u.getRol();
+				
+			}
+			
+			return ok;
+			
+		}
+		
 	
 // Método para insertar en bd
 	
@@ -247,29 +349,65 @@ public class Usuario {
 				
 	}
 	
-
-// Método para iniciar sesión
-	
-	public boolean iniciarSesion(String pass) throws SQLException {
-		
-		boolean ok = false;
+	public void actualizar() throws SQLException {
 		
 		DaoUsuarios dao = new DaoUsuarios();
+		dao.actualizar(this);
 		
-		Usuario u = DaoUsuarios.getInstance().login(this, pass); // Esto conecta con la bd y comprueba que devuelve un objeto
+		//DaoProyectos.getInstance().actualizar(this);
 		
-		if(u != null) {
+				
+	}
+	
+	
+	public void borrar(String dnicif) throws SQLException {
+		
+		DaoUsuarios dao = new DaoUsuarios();
+		dao.borrar(dnicif);
+		
+		//DaoProyectos.getInstance().borrar(id);
+		
+				
+	}
+	
+	public void obtenerPorDnicif(String dnicif) throws SQLException {
+		
+		DaoUsuarios dao = new DaoUsuarios();
+		Usuario u = dao.obtenerPorDnicif(dnicif);
 			
-			ok = true;
-			this.dnicif = u.getDnicif();
-			this.email = u.getEmail();
-			this.nombre = u.getNombre();
-			this.rol = u.getRol();
-			
-		}
+		this.setEmail(u.getEmail());
+		this.setNombre(u.getNombre());
+		this.setApellidos(u.getApellidos());
+		this.setRazonSocial(u.getRazonSocial());
+		this.setDnicif(u.getDnicif());
+		this.setDireccionLinea1(u.getDireccionLinea1());
+		this.setDireccionLinea2(u.getDireccionLinea2());
+		this.setCiudad(u.getCiudad());
+		this.setProvincia(u.getProvincia());
+		this.setCp(u.getCp());
+		this.setTelefono(u.getTelefono());
+		this.setRol(u.getRol());
+		this.setBoletin(u.isBoletin());
+		this.setCategoria(u.getCategoria());
+		this.setPortfolio(u.getPortfolio());
+		this.setBio(u.getBio());
+		this.setPass(u.getPass());
 		
-		return ok;
+			
+	}
+	
+	
+	public String dameJson() {
+		String json = "";
+		
+		Gson gson = new Gson();
+		
+		json = gson.toJson(this);
+		return json;
 		
 	}
+	
+
+
 
 }

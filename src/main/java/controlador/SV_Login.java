@@ -106,15 +106,17 @@ public class SV_Login extends HttpServlet {
 				
 				sesion.setAttribute("dnicif", u.getDnicif());
 				sesion.setAttribute("nombre", u.getNombre());
+				sesion.setAttribute("email", u.getEmail());
 				sesion.setAttribute("rol", u.getRol());
 				
 				// Obtener los datos de la sesión
 		        String nombre = (String) sesion.getAttribute("nombre");
 		        String dnicif = (String) sesion.getAttribute("dnicif");
+		        sesion.getAttribute("email");
 		        String rol = (String) sesion.getAttribute("rol");
 				
 				// Imprimir los datos en la consola
-				System.out.println("Se ha iniciado sesión. El usuario es: " + nombre + ", DNI/CIF " + dnicif + ", con rol de " +rol );
+				System.out.println("Se ha iniciado sesión. El usuario es: " + nombre + ", DNI/CIF " + dnicif + ", email " + email + ", con rol de " +rol );
 		
 				
 				if(sesion.getAttribute("rol").equals("Empresa")) {

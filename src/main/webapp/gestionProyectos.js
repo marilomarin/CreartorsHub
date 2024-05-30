@@ -44,14 +44,14 @@ window.addEventListener("DOMContentLoaded", function(){
     			html += "<span id='pending'>Pendiente de revisión</span>";
 				}
 
-      		html += "<td id='icono'><a href=# "+datos[i].idProyecto+")'><i class='fa-solid fa-eye'></i></a></td>";
+      		html += "<td id='icono'><a href='#' onclick='verProyecto("+datos[i].idProyecto+")'><i class='fa-solid fa-eye'></i></a></td>";
       		// No mostrar el icono de "Modificar" si el proyecto ha finalizado
         	if (datos[i].estado === "Cerrado") {
             html += "<td></td>"; 
         	} else {
-            html += "<td id='icono'><a href='modificar-proyecto.html?idProyecto=" + datos[i].idProyecto + "&op=2'><i class='fa-solid fa-pen-to-square'></i></a></td>"; 
-        	}
-      		html += "<td id='icono'><a href=#' onclick='borrar("+datos[i].idProyecto+")'><i class='fa-solid fa-trash'></i></a></td>";
+            html += "<td id='icono'><a href='#' onclick='mostrarFormularioModificar(" + datos[i].idProyecto + ", 2)'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+			}
+      		html += "<td id='icono'><a href='#' onclick='borrar("+datos[i].idProyecto+")'><i class='fa-solid fa-trash'></i></a></td>";
       		// Añadir el icono de chat solo si el estado es "Creator asignado" o "Pendiente de revisión"
         	if (datos[i].estado === "Pendiente" || datos[i].estado === "Asignado") {
             html += "<td id='icono'><a href='#' "+datos[i].idProyecto+")'><i class='fa-solid fa-comments'></i></a></td>";
@@ -69,17 +69,60 @@ window.addEventListener("DOMContentLoaded", function(){
 			
 	}
 	
+	
+	// BOTÓN MODIFICAR
+    window.mostrarFormularioModificar = function mostrarFormularioModificar(idProyecto, op) {
+        fetch('SV_GestionProyectos?idProyecto=' + idProyecto + '&op=' + op)
+            .then(response => response.json())
+            .then(data => {
+                // Rellenar el formulario con los datos del proyecto
+                document.getElementById("idProyecto").value = data.idProyecto;
+                document.getElementById("titulo_proyecto").value = data.tituloProyecto;
+                document.getElementById("categoria").value = data.categoria;
+                document.getElementById("descripcion").value = data.descripcion;
+                document.getElementById("fecha_entrega").value = data.fechaEntrega;
+                
+                // Mostrar el formulario
+                document.querySelector(".contenedorModificarProyectos").style.display = "block";
+                
+                // Ocultar el listado
+            	document.getElementById("listado").style.display = "none";
+            
+            });
+    };
+    
+    
+    // BOTON PUBLICAR MODIFICACIONES
+    // Función para ocultar el formulario cuando se envía
+    document.querySelector("form[name='formulario-proyecto']").addEventListener("submit", function(event){
+        document.querySelector(".contenedorModificarProyectos").style.display = "none";
+    });
+    
+
+	
 		window.onload = function() {
 	
     	llamada();
     }
-  
+    
 	
 	
 	});
 	
-	//La función de borrar realmente habría que hacerla con css y bonita
+	// BOTÓN CANCELAR MODIFICACIÓN (y mostrar el listado de nuevo)
+	function cancelarModificacion() {
+		
+	    // Ocultar el formulario de modificación
+	    document.querySelector(".contenedorModificarProyectos").style.display = "none";
+	    
+	    // Mostrar el listado de proyectos
+	   document.getElementById("listado").style.display = "flex";
+	   
+	 }
+	    
+
 	
+	// BOTÓN BORRAR
 	function borrar(idProyecto){
 		
 		if(confirm("Por favor, confirma que quieres BORRAR los datos.")){
@@ -90,6 +133,34 @@ window.addEventListener("DOMContentLoaded", function(){
 			
 		}
 	}
+	
+	// BOTÓN VER PROYECTO (POP-UP)
+	function verProyecto(idProyecto) {
+	    fetch('SV_GestionProyectos?idProyecto=' + idProyecto + '&op=2')
+	        .then(response => response.json())
+	        .then(data => {
+	            // Rellenar la pop-up con los detalles del proyecto
+	            document.getElementById("verProyecto").innerHTML = `
+	                <h2>${data.tituloProyecto}</h2><br><br>
+	                <p><strong>Categoría:</strong> ${data.categoria}</p><br><br>
+	                <p><strong>Descripción:</strong> ${data.descripcion}</p><br><br>
+	                <p><strong>Fecha máxima de entrega:</strong> ${data.fechaEntrega}</p><br><br>
+	                <p><strong>Briefing del proyecto:</strong> <a href="${data.archivoAdjunto}" download class="button-descargar">Descargar <i class="fa-solid fa-file-arrow-down"></i></a></p><br><br>
+	                <button class="cerrar-popup" onclick="cerrarPopup()"><i class="fa-solid fa-circle-xmark"></i> Volver al listado</button>
+	            `;
+	
+	            // Mostrar la pop-up
+	            document.getElementById("popVerProyecto").style.display = "block";
+	        });
+	}
+	
+			// Función para ocultar la pop-up
+			function cerrarPopup() {
+			    document.getElementById("popVerProyecto").style.display = "none";
+			}
+
+	
+
 
 	
 	

@@ -106,7 +106,7 @@
             <h2>Crea tu perfil de creador/artista</h2>
         </div>
 
-    <form name="formulario-alta" action="SV_AltasUsuario" method="post">
+    <form name="formulario-alta" action="SV_AltasUsuarios" method="post">
 
         <div class="columna">
             <label for="email" id="label-form">Email*:</label><br>
@@ -161,6 +161,12 @@
                 <option value="motions_graphics">Motions Graphics</option>
                 <option value="artes_plasticas">Artes Plásticas</option>
             </select><br><br>
+            
+            <label for="portfolio" id="label-form">Por favor, introduce  la url de tu portfolio digital o web*:</label><br>
+            <input type="text" id="campo-form" name="portfolio" required><br><br>  
+            
+            <label for="bio" id="label-form">Cuéntanos más sobre ti :)*:</label><br>
+            <textarea id="campo-form-textarea" name="bio" required></textarea><br><br>   
         
         	<input type="checkbox" id="rol_creador" name="rol" value="creador" required>
             <label for="rol">Confirmo que quiero registrarme con perfil de <strong>Creador</strong></label><br><br> 

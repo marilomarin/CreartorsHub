@@ -72,6 +72,7 @@ public class SV_GestionProyectos extends HttpServlet {
 		int opcion = Integer.parseInt(request.getParameter("op"));
 		
 		
+		// OP. MODIFICAR
 		if(opcion == 2) {
 
 			int idProyecto = Integer.parseInt(request.getParameter("idProyecto"));
@@ -90,7 +91,7 @@ public class SV_GestionProyectos extends HttpServlet {
 				e.printStackTrace();
 			}	
 			
-			
+		// OP. LISTAR	
 		}else if(opcion == 1) {
 			DaoProyectos proyectos;
 			
@@ -106,7 +107,7 @@ public class SV_GestionProyectos extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			
+		// OP. BORRAR
 		}else if(opcion==3){
 			
 			try {
@@ -143,7 +144,7 @@ public class SV_GestionProyectos extends HttpServlet {
 		
 		if(sesion.getAttribute("rol").equals("Empresa")) {
 		
-		//Método para LISTAR, enviando una respuesta JSON al cliente desde el servidor
+		// Método para LISTAR, enviando una respuesta JSON al cliente desde el servidor
 		
 				String respuestaJSON;
 				
@@ -162,14 +163,11 @@ public class SV_GestionProyectos extends HttpServlet {
 					e.printStackTrace();
 				}
 		
-		//Obtenemos los datos de la sesión
+		// Para actualizar los datos
 				
 		request.getSession();
 		
 		if(sesion.getAttribute("rol").equals("Empresa")) {
-
-
-		//Para actualizar
 		
 		String tituloProyecto = request.getParameter("titulo_proyecto");
 		String categoria = request.getParameter("categoria");
